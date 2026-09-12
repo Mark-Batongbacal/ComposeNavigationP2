@@ -195,7 +195,7 @@ private fun DetailRow(
     ) {
         Text(
             text = label,
-            color = DetailsMuted,
+            color = Color.White,
             style = MaterialTheme.typography.bodyMedium
         )
         Text(
