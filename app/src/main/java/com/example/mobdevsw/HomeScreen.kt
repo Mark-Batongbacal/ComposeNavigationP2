@@ -64,7 +64,8 @@ fun HomeScreen(
     onViewDetails: (
         studentId: String,
         studentName: String,
-        course: String
+        course: String,
+        yearLevel: String
     ) -> Unit
 ) {
     var errorMessage by remember { mutableStateOf("") }
@@ -335,7 +336,7 @@ fun HomeScreen(
                 Button(
                     onClick = {
                         showConfirmationDialog = false
-                        onViewDetails(studentId, studentName, course)
+                        onViewDetails(studentId, studentName, course, yearLevel)
                     },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = HomeAccent,
