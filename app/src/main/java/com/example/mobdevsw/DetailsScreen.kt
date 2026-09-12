@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,7 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -36,7 +34,6 @@ private val DetailsBackground = Color(0xFF09090D)
 private val DetailsSurface = Color(0xFF15151C)
 private val DetailsMuted = Color(0xFF9A9AA5)
 private val DetailsDivider = Color(0xFF2A2A33)
-private val DetailsAccent = Color(0xFF8B7CFF)
 private val DetailsAccentBlue = Color(0xFF4F7CFF)
 
 @Composable
@@ -44,6 +41,7 @@ fun DetailsScreen(
     studentId: String,
     studentName: String,
     course: String,
+    year: String,
     onBack: () -> Unit,
     onEdit: () -> Unit
 ) {
@@ -103,53 +101,12 @@ fun DetailsScreen(
                 }
             }
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(28.dp))
-                    .background(
-                        brush = Brush.linearGradient(
-                            colors = listOf(DetailsAccentBlue, DetailsAccent)
-                        )
-                    )
-                    .padding(22.dp)
-            ) {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Text(
-                        text = "PROFILE CARD",
-                        color = Color.White.copy(alpha = 0.72f),
-                        fontSize = 11.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        letterSpacing = 1.2.sp
-                    )
-                    Text(
-                        text = studentName,
-                        color = Color.White,
-                        style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = course,
-                        color = Color.White.copy(alpha = 0.82f),
-                        style = MaterialTheme.typography.bodyLarge
-                    )
 
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    Text(
-                        text = "ID  •  $studentId",
-                        color = Color.White,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                }
-            }
 
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(28.dp),
-                colors = CardDefaults.cardColors(containerColor = DetailsSurface)
+                colors = CardDefaults.cardColors(containerColor = DetailsAccentBlue)
             ) {
                 Column(
                     modifier = Modifier.padding(20.dp)
@@ -162,7 +119,7 @@ fun DetailsScreen(
                     )
                     Text(
                         text = "Review the information submitted from the Home screen.",
-                        color = DetailsMuted,
+                        color = Color.White,
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.padding(top = 4.dp, bottom = 18.dp)
                     )
@@ -184,6 +141,13 @@ fun DetailsScreen(
                     DetailRow(
                         label = "Course",
                         value = course
+                    )
+
+                    DetailDivider()
+
+                    DetailRow(
+                        label = "Year",
+                        value = year
                     )
                 }
             }

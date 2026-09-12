@@ -90,10 +90,13 @@ fun AppNavigation() {
             val course =
                 backStackEntry.arguments?.getString("course") ?: ""
 
+            val yearLevel = backStackEntry.arguments?.getString("yearLevel") ?: ""
+
             DetailsScreen(
                 studentId = studentId,
                 studentName = studentName,
                 course = course,
+                year = yearLevel,
 
                 onBack = {
                     navController.popBackStack()
