@@ -64,21 +64,22 @@ fun AppNavigation() {
                     loginAttempts = 0
                 },
 
-                onViewDetails = { id, name, studentCourse ->
+                onViewDetails = { id, name, studentCourse, studentYear ->
 
                     val encodedId = Uri.encode(id)
                     val encodedName = Uri.encode(name)
                     val encodedCourse = Uri.encode(studentCourse)
+                    val encodedYear = Uri.encode(studentYear)
 
                     navController.navigate(
-                        "details/$encodedId/$encodedName/$encodedCourse"
+                        "details/$encodedId/$encodedName/$encodedCourse/$encodedYear"
                     )
                 }
             )
         }
 
         composable(
-            route = "details/{studentId}/{studentName}/{course}"
+            route = "details/{studentId}/{studentName}/{course}/{yearLevel}"
         ) { backStackEntry ->
 
             val studentId =
@@ -90,10 +91,14 @@ fun AppNavigation() {
             val course =
                 backStackEntry.arguments?.getString("course") ?: ""
 
+            val yearLevel =
+                backStackEntry.arguments?.getString("yearLevel") ?: ""
+
             DetailsScreen(
                 studentId = studentId,
                 studentName = studentName,
                 course = course,
+                year = yearLevel,
 
                 onBack = {
                     navController.popBackStack()
